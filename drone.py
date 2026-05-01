@@ -6,17 +6,17 @@ import sys
 import math
  
 
-GRID_SIZE          = 28
-CELL_SIZE          = 24
-PANEL_W            = 180
-MARGIN             = 3
+GRID_SIZE          = 20
+CELL_SIZE          = 20
+PANEL_W            = 160
+MARGIN             = 2
 
 WIN_W              = GRID_SIZE * CELL_SIZE + PANEL_W
 WIN_H              = GRID_SIZE * CELL_SIZE
 
-NUM_STATIC         = 140
-NUM_DYNAMIC        = 80
-DRONE_MOVE_DELAY   = 90
+NUM_STATIC         = 60
+NUM_DYNAMIC        = 20
+DRONE_MOVE_DELAY   = 70
 DYNAMIC_MOVE_EVERY = 2
 DIR_CHANGE_CHANCE  = 0.20
 START              = (0, 0)
@@ -254,8 +254,7 @@ def draw_panel(surf, sim, fb, fs, tick):
         ln = fs.render(f"[{key}] {act}", True, C_TEXT_DIM)
         surf.blit(ln, (px + PANEL_W // 2 - ln.get_width() // 2, y))
         y += 15
- 
-# ── Main draw ─────────────────────────────────
+
 def draw(surf, sim, fonts, tick):
     fb, fs = fonts
     surf.fill(C_BG)
@@ -286,8 +285,7 @@ def draw(surf, sim, fonts, tick):
                 draw_cell(surf, r, c, C_VISITED, shrink=2)
             else:
                 draw_cell(surf, r, c, C_EMPTY)
- 
-    # Drone — circle
+
     dr, dc = sim.drone
     draw_circle(surf, dr, dc, C_DRONE_FILL)
     draw_circle(surf, dr, dc, C_DRONE, shrink=4)
@@ -296,8 +294,7 @@ def draw(surf, sim, fonts, tick):
     pygame.draw.circle(surf, (255, 255, 255), (cx, cy), 3)
  
     draw_panel(surf, sim, fb, fs, tick)
- 
-# ── Main ──────────────────────────────────────
+
 def main():
     pygame.init()
     pygame.display.set_caption("Autonomous Drone Navigation Simulation")
